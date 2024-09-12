@@ -7,7 +7,7 @@ RUN cargo build --release
 
 FROM rust:alpine as wasm
 WORKDIR /home/rust/src
-RUN apk --no-cache add curl musl-dev
+RUN apk --no-cache add curl musl-dev openssl-dev openssl-libs-static
 RUN curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 COPY . .
 RUN wasm-pack build --target web cstudio-wasm
